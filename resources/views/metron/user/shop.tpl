@@ -552,9 +552,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="use_coupon_code" onclick="shop.coupon();">
+                    <!-- <button type="button" class="btn btn-success" id="use_coupon_code" onclick="shop.coupon();">
                         使用优惠码
-                    </button>
+                    </button> -->
                     <button type="button" class="btn btn-primary" data-dismiss="modal" id="order_input"
                         onclick="shop.buyok('{$config['payment_system']}');">确定购买
                     </button>
