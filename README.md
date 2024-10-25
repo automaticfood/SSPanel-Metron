@@ -66,116 +66,65 @@ chown -R www:www 你的文件夹名/
 UPDATE user SET theme='metron'
 ```
 
-### 使用宝塔面板的计划任务配置
+#### 11.添加计划任务
+
+编辑定时任务列表
+
 ```
-每日任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每天 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job DailyJob
+crontab -e
+```
 
-检测任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckJob
+输入下面定时任务
 
-用户账户相关任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每小时
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job UserJob
+```
+# 每日任务 (每天 0 点 0 分执行)
+0 0 * * * php /www/wwwroot/你的网站目录/xcat Job DailyJob
 
-检查用户会员等级过期任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckUserClassExpire
+# 检测任务 (每分钟执行一次)
+* * * * * php /www/wwwroot/你的网站目录/xcat Job CheckJob
 
-检查账号过期任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每小时
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckUserExpire
+# 用户账户相关任务 (每小时执行一次)
+0 * * * * php /www/wwwroot/你的网站目录/xcat Job UserJob
 
-定时检测邮件队列 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job SendMail
+# 检查用户会员等级过期任务 (每分钟执行一次)
+* * * * * php /www/wwwroot/你的网站目录/xcat Job CheckUserClassExpire
 
-每日流量报告 (给开启每日邮件的用户发送邮件)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每天 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat SendDiaryMail
+# 检查账号过期任务 (每小时执行一次)
+0 * * * * php /www/wwwroot/你的网站目录/xcat Job CheckUserExpire
 
-审计封禁 (建议设置)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat DetectBan
+# 定时检测邮件队列 (每分钟执行一次)
+* * * * * php /www/wwwroot/你的网站目录/xcat Job SendMail
 
-检测节点被墙 (可选)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat DetectGFW
+# 每日流量报告 (每天 0 点 0 分执行)
+0 0 * * * php /www/wwwroot/你的网站目录/xcat SendDiaryMail
 
-检测中转服务器 (可选)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 5 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat DetectTransfer
+# 审计封禁 (每分钟执行一次)
+* * * * * php /www/wwwroot/你的网站目录/xcat DetectBan
 
-Radius (可选)
-synclogin
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius synclogin
+# 检测节点被墙 (每分钟执行一次)
+* * * * * php /www/wwwroot/你的网站目录/xcat DetectGFW
 
-syncvpn
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius syncvpn
+# 检测中转服务器 (每 5 分钟执行一次)
+*/5 * * * * php /www/wwwroot/你的网站目录/xcat DetectTransfer
 
-syncnas
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius syncnas
-自动备份 (可选)
+# Radius sync (每分钟执行一次)
+* * * * * php /www/wwwroot/你的网站目录/xcat SyncRadius synclogin
+* * * * * php /www/wwwroot/你的网站目录/xcat SyncRadius syncvpn
+* * * * * php /www/wwwroot/你的网站目录/xcat SyncRadius syncnas
+```
 
-整体备份
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：自己设置, 可以设置每30分钟左右
-脚本内容：php /www/wwwroot/你的网站目录/xcat Backup full
+可选:
 
-只备份核心数据
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：自己设置, 可以设置每30分钟左右
-脚本内容：php /www/wwwroot/你的网站目录/xcat Backup simple
-财务报表 (可选)
+```
+# 自动备份 (每 30 分钟执行一次)
+*/30 * * * * php /www/wwwroot/你的网站目录/xcat Backup full
+*/30 * * * * php /www/wwwroot/你的网站目录/xcat Backup simple
 
-日报
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每天 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail day
-
-周报
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每星期 周日 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail week
-
-月报
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每月 1 日 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail month
+# 财务报表
+# 日报 (每天 0 点 0 分执行)
+0 0 * * * php /www/wwwroot/你的网站目录/xcat FinanceMail day
+# 周报 (每周日 0 点 0 分执行)
+0 0 * * 0 php /www/wwwroot/你的网站目录/xcat FinanceMail week
+# 月报 (每月 1 日 0 点 0 分执行)
+0 0 1 * * php /www/wwwroot/你的网站目录/xcat FinanceMail month
 ```
