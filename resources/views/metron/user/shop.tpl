@@ -234,7 +234,8 @@
                                         <div class="card-body d-flex flex-column p-0" style="position: relative;">
                                             <div class="" style="height: 100px; min-height: 100px;">
                                                 <h3 class="display-3 text-white text-center">
-                                                    <strong>{$shop_class_name}</strong></h3>
+                                                    <strong>{$shop_class_name}</strong>
+                                                </h3>
                                             </div>
                                             <div
                                                 class="card-spacer {$style[$theme_style]['shop']['card_bg']} card-rounded flex-grow-1 {$metron['style_shadow']}">
@@ -416,12 +417,12 @@
                         style="display: none">优惠额度：</label>
                     <label class="row col-12 col-form-label kt-font-boldest" id="shop_total">套餐金额：</label>
                     <label class="row col-12 col-form-label kt-font-boldest" id="shop_stneed">还需支付：</label>
-                    <label class="row col-12 col-form-label kt-font-boldest kt-padding-b-0" id="autor"><span
-                            class="kt-padding-t-5">到期时自动续费：</span>
-                        <span class="kt-switch kt-switch--sm kt-switch--icon">
+                    <label class="row col-12 col-form-label kt-font-boldest kt-padding-b-0" id="autor">
+                        <!-- <span class="kt-padding-t-5">到期自动续费：</span> -->
+                        <span style="display: flex;" class="kt-switch kt-switch--sm kt-switch--icon">
                             <label class="kt-padding-0">
-                                <input type="checkbox" name="autorenew" id="autorenew">
-                                <span></span>
+                                <input style="margin: 0.4px;" type="checkbox" name="autorenew" id="autorenew">
+                                <span for="autorenew">&nbsp;是否续费</span>
                             </label>
                         </span>
                     </label>
