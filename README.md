@@ -16,7 +16,7 @@
 
 
 ```shell
-wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install
+wget https://getcomposer.org/installer -O composer.phar && php composer.phar && sudo -u www php composer.phar install
 ```
 
 
