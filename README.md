@@ -2,6 +2,15 @@
 
 交流群：[https://t.me/BobShareGroup](https://t.me/BobShareGroup)
 
+节点配置
+```
+节点IP;监听端口;0;tcp;tls;security=reality|flow=xtls-rprx-vision|host=www.amazon.com|sni=www.amazon.com|enable_vless=true|publicKey=公钥
+```
+公钥生成
+```
+xray x25519
+```
+
 #### 1.连接 SSH 安装宝塔面板
 
 #### 2.宝塔面板安装环境, 推荐使用 PHP 7.4、MySQL 5.7、Nginx 1.2+
