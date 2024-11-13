@@ -58,7 +58,7 @@
         <!-- 登录按钮 -->
         <button class="btn login-btn" onclick="window.location.href='/user';">登录</button>
         <!-- 注册按钮 -->
-        <button class="btn register-btn" onclick="window.location.href='/auth/login';">注册</button>
+        <button class="btn register-btn" onclick="window.location.href='/auth/register';">注册</button>
     </body>
     </html>
 {/if}
